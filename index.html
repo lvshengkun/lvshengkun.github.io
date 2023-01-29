@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link id="layuicss-layer" rel="stylesheet" href="https://www.costway.com/skin/frontend/default/hooya/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all">
+    <script type="text/javascript" src="https://www.costway.com/skin/frontend/default/hooya/layui/layui.all.js?v=3"></script>
+    <script src="https://www.costway.com/email/css/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://assets.costway.com/skin/frontend/default/hooya/css/swiper.min.css">
+    <script src="https://assets.costway.com/skin/frontend/default/hooya/hooya/js/swiper.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 重构新增样式 */
+        .cms-container .content{
+            padding: 0;
+            max-width: none;
+        }
+        .pcShow{
+            display: block !important;
+        }
+        .mobileShow{
+            display: none !important;
+        }
+
+        p,a{
+            white-space: normal;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+        ul{
+            list-style: none;
+        }
+        .part-img{
+            padding: 30px 0;
+        }
+        .part-title{
+            text-align: center;
+            margin: 0px auto 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #F64054;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            position: absolute;
+            color: #7A7A7A !important;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: #f4f4f4;
+            border: 1px solid #F4F4F4;
+            top: 58% !important;
+            transform: translate(0%, -50%);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: all 0.5s;
+            background-size: 14px 44px;
+        }
+        .see-more{
+            margin: 26px auto 0;
+            width: 160px;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 30px;
+            float: left;
+            background: #000;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+        .part .swiper-part{
+            overflow:hidden;
+        }
+        .swiper-part{
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        .part .part-l{
+            width: 61%;
+            float: left;
+            position: relative;
+        }
+        .part .part-r {
+            width: 38%;
+            float: right;
+            height: 580px;
+            overflow-y: scroll;
+        }
+        .part .part-r::-webkit-scrollbar {
+            width: 8px;
+        }
+        .part .part-r::-webkit-scrollbar-track {
+            background: none;
+            -webkit-border-radius: 2em;
+            -moz-border-radius: 2em;
+            border-radius: 2em;
+        }
+        .part .part-r::-webkit-scrollbar-thumb {
+            background-color: #000;
+            -webkit-border-radius: 2em;
+            -moz-border-radius: 2em;
+            border-radius: 2em;
+        }
+
+        .part .part-r ul{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-right: 3%;
+        }
+        .swiper-container3 .swiper-slide img{
+            width: 100%;
+        }
+        .part .part-r ul li{
+            width: 48%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            background: #fff;
+            margin-bottom: 20px;
+        }
+        .part .part-r ul li img{
+            width: 100%;
+        }
+        .part .part-r ul li .shop-price {
+            text-align: center;
+        }
+        .part .part-r ul li.pre-price {
+            text-decoration: line-through;
+        }
+        .part .part-r ul li .now-price {
+            color: #cf3607;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 16px;
+            margin-right: 10px;
+            text-align: center;
+        }
+        .part .part-r ul li .shop-name{
+            -webkit-line-clamp: 1;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 14px auto 8px !important;
+            text-align: center;
+            color: #000;
+            width: 96%;
+            height: 20px;
+            font-size: 13px;
+        }
+        .pro-sec{
+            display: none;
+        }
+        .swiper-button-next, .swiper-button-prev{
+            background-size: 14px 44px;
+        }
+        .container .content{
+            width: 1200px;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .container .content ul,.part3 .content ul .pro-fir{
+            width: 100%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .container .content ul .big-img{
+            margin-bottom: 15px;
+            width: 49%;
+            height: 460px;
+        }
+        .container .content ul .big-img img{
+            width: 100%;
+            height: 100%;
+        }
+        .container .content ul li,.part3 .content ul .pro-fir li{
+            float: left;
+            width: 23.5%;
+            padding: 8px 0 0;
+            box-sizing: border-box;
+            background-color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: 4px;
+        }
+        .container .content ul li a{
+            display: block;
+            position: relative;
+        }
+        .container .content ul li .shop-name{
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 14px auto 8px !important;
+            text-align: center;
+            color: #000;
+            width: 96%;
+        }
+        .container .content ul li .shop-price{
+            text-align: center;
+        }
+        .container .content ul li .now-price{
+            color: #cf3607;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .content ul li .pre-price{
+            text-decoration: line-through;
+        }
+        .container .content ul li .buy{
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        .container .content ul li .buy p{
+            height: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+        }
+        .part .part-r ul.part-pro2,.part .part-r ul.part-pro3{
+            display: none;
+        }
+
+
+
+        /* 常规样式 */
+        .container{
+            background: url("https://assets.costway.com/media/wysiwyg/20210206/valentine-bg.png");
+            padding: 0px 0 20px;
+            background-repeat: repeat-y;
+            background-size: 100%;
+            background-position-y:0px;
+            position: relative;
+        }
+        .navigation{
+            position: relative;
+        }
+        .snow-icon{
+            position: absolute;
+            top: -60px;
+        }
+        .container .content ul li>a>img:nth-of-type(1) {
+            width: 96%;
+            height: auto;
+            display: block!important;
+            visibility: initial!important;
+            margin: 0 auto;
+        }
+        .navigation{
+            margin-bottom: -4px;
+        }
+        .pro-right{
+            padding-top: 30px;
+        }
+        .shop-title{
+            position: relative;
+            /*z-index: 99;*/
+            height: 66px;
+            color: #df9d86;
+            font-weight: bold;
+            margin: 14px auto 12px;
+        }
+        .title-des{
+            color: #df9d86;
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .shop-title img{
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            overflow: hidden;
+        }
+        .navigation{
+            height: auto!important;
+        }
+        .spe-pro{
+            height: auto!important;
+        }
+        .container .content ul li{
+            height: auto;
+            padding-top: 10px;
+        }
+        .container .content ul li:nth-of-type(4n){
+            margin-right: 0px;
+        }
+        .container .content ul li .shop-name{
+            height: 46px;
+            font-size: 16px;
+            line-height: 23px;
+        }
+        .container .content ul li .shop-price{
+            margin-bottom: 8px;
+        }
+        .container .content ul li .buy{
+            display: block;
+            margin: 0 auto;
+            width: 100% !important;
+            height: 45px;
+            background-color: #f54054 !important;
+            border-radius: 0 0 4px 4px;
+        }
+        .buy p{
+            line-height: 45px !important;
+            width: 100%;
+            margin: 0;
+        }
+        .spe-pro .spr-box img{
+            margin-top: 0px;
+        }
+        .std p{
+            margin: 0 0 0em;
+        }
+
+
+
+        .container .page-top{
+            display: block;
+            margin: 0 auto;
+        }
+
+        .container .part{
+            width: 1200px;
+            margin: 60px auto 0;
+            display: block;
+        }
+        .container .part:nth-of-type(1){
+            margin-top: 0;
+        }
+        .container .part .part-top{
+            display: block;
+        }
+        .container .part .special-part{
+            overflow:hidden;
+        }
+        .container .part .special-part a{
+            float: left;
+        }
+        .container .part .special-part a img{
+            display: inline-block;
+        }
+
+        .container .kind-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .kind-container a{
+            display: block;
+        }
+
+        .kind-container a p{
+            margin-top: 10px;
+            text-align: center;
+        }
+        .img-hover{
+            display: none;
+        }
+        .part2 .main-container{
+            width: 1200px;
+            box-sizing: border-box;
+            padding: 30px;
+            height: auto;
+            background: #EDEDED;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .main-container .main-pro{
+            width: 560px;
+            position: relative;
+            background-color: #fff;
+            padding: 4px 0 4px 4px;
+            box-sizing: border-box;
+            height: auto;
+        }
+        .main-container .main-pro:nth-last-of-type(1),.main-container .main-pro:nth-last-of-type(2){
+            margin-top: 20px;
+        }
+        .main-container .main-pro .off_num1{
+            background-image: url(https://assets.costway.com/media/wysiwyg/FDS-product/Home/specials_folder/2022activity/winterSale/off.png);
+            width: 64px;
+            height: 64px;
+            background-size: 100% 100%;
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            text-align: center;
+            line-height: 13px;
+            color: #fff;
+            font-size: 16px;
+            padding: 19px 0;
+        }
+        .main-container .main-pro .pro-content{
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            
+        }
+        .main-pro .pro-content .pro_img{
+            width: 268px;
+            height: auto;
+            float: left;
+        }
+        .main-pro .pro-content .inf-content{
+            float: left;
+            width: calc(100% - 328px);
+            margin: 50px 0 0 30px;
+        }
+        .inf-content .shop-name{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 14px;
+        }
+        .inf-content .shop-price{
+            margin: 30px 0 20px;
+            font-weight: bold;
+        }
+        .inf-content .shop-price .now-price{
+            font-size: 28px;
+            color: #000;
+            vertical-align: middle;
+        }
+        .inf-content .down{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .inf-content .pre-price{
+            font-size: 18px;
+            color: #E93A3A;
+            vertical-align: middle;
+            text-decoration: none !important;
+        }
+        .inf-content .buy{
+            width: 160px;
+            height: 41px;
+            background: #f54054;
+            border-radius: 4px;
+            line-height: 41px;
+            font-size: 20px;
+            color: #000;
+            text-align: center;
+        }
+
+
+
+
+        .part3 .type-content{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .part3 .type-content li img{
+            width: 100%;
+        }
+        .type-content li{
+            width: 24%;
+            line-height: 70px;
+            color: #000;
+            font-size: 22px;
+            text-align: center;
+            cursor: pointer;
+            opacity: .7;
+        }
+        .type-content li.checked{
+            opacity: 1;
+        }
+        .part3 .content{
+            margin: 10px auto 0;
+        }
+        .part3 .content ul{
+            display: none;
+            overflow:hidden;
+        }
+        .part3 .content ul.checked{
+            display: block;
+        }
+
+
+        .part4 .plus-content{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px auto 0;
+        }
+        .plus-content a{
+            display: block;
+        }
+        .plus-content a>img{
+            display: block;
+        }
+        .part4 .content ul li .off_num{
+            position: absolute;
+            top: 0;
+            left: 6px;
+        }
+        .part4 .content ul li .off_num p{
+            background: #E93A3A;
+            height: 60px;
+            line-height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        .part4 .content ul li .join{
+            text-align: right;
+            font-size: 14px;
+            color: #E4AF67;
+            line-height: 19px;
+            display: block;
+            margin: 9px 0;
+            padding-right: 3%;
+        }
+        .part4 .content ul li .buy{
+            display: block;
+            margin: 35px auto 0;
+            width: 100% !important;
+            height: 45px;
+            border-radius: 0 0 4px 4px;
+            line-height: 45px;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+        }
+        .part4 .content ul li .first-price{
+            width: 256px;
+            height: 32px;
+            border: 1px solid #FBBA5F;
+            background: linear-gradient(90deg, #E3AE65 0%, #FFDCAB 100%);
+            border-radius: 6px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 32px;
+            font-size: 14px;
+        }
+
+        .part .store{
+            display: block;
+        }
+
+        .part5 .swiper-content{
+            overflow: hidden;
+            height: 350px;
+            position: relative;
+        }
+        .part5 .swiper{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .part5 .swiper-slide{
+            position: relative;
+            z-index: 5;
+        }
+        .part5 .swiper-slide-active{
+            transform: scale(1.5);
+            z-index: 10;
+        }
+        .part5 .swiper-slide a{
+            display: block;
+            width: 100%;
+        }
+        .part5 .swiper-slide a>img{
+            display: block;
+            width: 100%;
+        }
+        .part2 ul{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .part2 ul li{
+            width: 24%;
+            background: url(https://assets.costway.com/media/wysiwyg/20210206/valentine11.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            padding: 30px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        .part2 ul li a{
+
+        }
+        .part2 ul li a p{
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+        .part2 ul li a p:nth-of-type(1){
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .part2 ul li a p:nth-of-type(2){
+            font-size: 50px;
+            font-style: italic;
+            color: #fff;
+            font-weight: bold;
+        }
+        .part2 ul li a p:nth-of-type(3){
+            font-size: 22px;
+            font-weight: bold;
+            height: 33px;
+        }
+        .part2 ul li a p:nth-of-type(4){
+            margin-top: 30px;
+        }
+        .part2 ul li:hover a p:nth-of-type(2){
+            color: #333;
+        }
+        @media (max-width:767px) {
+            .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after,.swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after{
+                content: none!important;
+            }
+
+            .part-img{
+                margin: 0 10%!important;
+                padding: 10px 0;
+            }
+
+            .part2 ul li{
+                width: 49%;
+                padding: 20px 0px;
+            }
+            .part2 ul li a p:nth-of-type(1){
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .part2 ul li a p:nth-of-type(2){
+                font-size: 30px;
+                font-style: italic;
+                color: #fff;
+                font-weight: bold;
+            }
+            .part2 ul li a p:nth-of-type(3){
+                font-size: 20px;
+                font-weight: bold;
+                height: 33px;
+            }
+            .part2 ul li a p:nth-of-type(4){
+                margin-top: 10px;
+            }
+            .part-title{
+                font-size: 16px;
+            }
+            .mobile-top{
+                margin-top: -5px;
+            }
+            .pcShow{
+                display: none !important;
+            }
+            .mobileShow{
+                display: block !important; 
+            }
+            .container .part .special-part{
+                overflow:hidden;
+            }
+            .container .part .special-part a{
+                float: left;
+                width: 50%;
+                display: inline-block;
+            }
+            .container .part .special-part a img{
+                display: inline-block;
+                width: 100%;
+            }
+            .page-index .page{
+                padding: .1rem 0;
+            }
+            .cmswarp{
+                padding: 0 !important;
+            }
+
+            .box .container{
+                padding: 20px 0 !important;
+            }
+            /* .content ul li .shop-price{
+                height: 50px;
+            } */
+            .container .content{
+                width: 100%;
+                padding: 0;
+                margin-bottom: 0;
+            }
+            .container .content ul .pro_sku{
+                width: 49% !important;
+                margin-right: 0;
+            }
+            .part4 .content ul li .buy{
+                margin-top: 10px;
+            }
+            .swiper-container2 .swiper-slide{
+                width: 49%;
+                margin-right: 2%;
+            }
+            .swiper-container2 .swiper-slide:last-child{
+                margin-right: 0%;
+            }
+            .container .content ul .big-img{
+                width: 100%;
+                height: auto;
+            }
+            .container .content ul li:nth-of-type(2n){
+                margin-left: 2%;
+            }
+
+            .part .part-r {
+                height: auto;
+                margin-top: 20px;
+            }
+            .part .part-r ul{
+                margin-right: 0;
+            }
+            .part .part-r ul li{
+                width: 49%;
+                padding: 10px;
+                box-sizing: border-box;
+                border-radius: 4px;
+                background: #fff;
+                margin-bottom: 10px;
+            }
+
+
+            .container .content ul li>a>img:nth-of-type(1) {
+                width: 100%;
+                height: auto;
+            }
+            .container{
+                margin-bottom: 0px;
+                padding-top: 0px;
+            }
+            .container .content ul li .shop-name {
+                height:3em!important;
+                line-height: 1.5em!important;
+                margin-bottom: 0.6em!important;
+            }
+            .more-shop img{
+                height: auto!important;
+            }
+            .container{
+                padding: 0 !important;
+            }
+            .shop-title{
+                padding: 0!important;
+            }
+            .pro-right {
+                padding-top: 0em!important;
+            }
+            .spr-box {
+                width: 50% !important;
+                height: auto!important;
+                padding: 0px!important;
+            }
+            .spr-box img{
+                width: 100% !important;
+            }
+            #spe-pro .buy {
+                margin-top: 1em!important;
+            }
+            .spe-pro{
+                margin-left: 0% !important;
+            }
+            .shop-title{
+                font-size: 16px;
+                font-weight: bold;
+                height: auto!important;
+            }
+            .title-des{
+                color: #df9d86;
+                text-align: center;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            .well{
+                display: none!important;
+            }
+            .container .content ul .pro_sku{
+                height: auto;
+            }
+
+            .container .content ul{
+                width: 96%;
+                margin: 0 auto;
+            }
+
+
+            .container .page-top{
+                width: 96%;
+            }
+            .container .part{
+                width: 96%;
+                margin: 20px auto 0;
+            }
+            .container .part .part-top{
+                width: 100%;
+            }
+
+            .container .kind-container{
+                flex-wrap: wrap;
+
+            }
+            .kind-container a{
+                width: 48%;
+                margin-bottom: 15px;
+            }
+
+            .kind-container a>img{
+                width: 100%;
+            }
+
+            .part2 .main-container{
+                width: 100%;
+                padding: 20px 10px;
+            }
+            .main-container .main-pro{
+                width: 100%;
+            }
+            .main-container .main-pro:nth-last-of-type(1), .main-container .main-pro:nth-last-of-type(2),.main-container .main-pro:nth-last-of-type(3){
+                margin-top: 10px;
+            }
+            .main-pro .pro-content .pro_img{
+                width: 43%;
+            }
+            .main-pro .pro-content .inf-content{
+                width: 50%;
+                margin: 10px 0 0 5%;
+            }
+            .inf-content .shop-price{
+                margin: 15px 0 10px;
+            }
+            .inf-content .shop-price .now-price{
+                font-size: 18px;
+            }
+            .inf-content .down{
+                width: 20px;
+                height: auto;
+            }
+            .inf-content .pre-price{
+                font-size: 14px;
+            }
+            .inf-content .buy{
+                font-size: 14px;
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+            }
+            .main-container .main-pro .off_num1{
+                width: 48px;
+                padding: 12px 0;
+                height: 48px;
+                line-height: 12px;
+                right: -10px;
+                top: -20px;
+            }
+            
+
+            .type-content li{
+                width: 30%;
+                font-size: 16px;
+                line-height: 20px;
+                height: 60px;
+                padding: 2px;
+            }
+
+
+
+            .part4 .content ul li .first-price{
+                width: 96%;
+                margin: 0 auto;
+                height: 40px;
+                line-height: 20px;
+                font-size: 13px;
+            }
+            .part4 .content ul li .join{
+                font-size: 13px;
+            }
+            .part4 .plus-content{
+                flex-wrap: wrap;
+            }
+
+            .plus-content a{
+                width: 100%;
+            }
+            .plus-content a>img{
+                width: 100%;
+            }
+
+            .part .store{
+                width: 100%;
+            }
+
+            .part5 .swiper-content{
+                height: 130px;
+            }
+           
+            .asdasd{
+                margin-right: 10px;
+            }
+            .container .content ul li .buy p{
+                font-size: 15px;
+            }
+            .part .part-l{
+                width: 100%;
+                float: left;
+                position: relative;
+            }
+            .part .part-r{
+                width: 100%;
+                float: right;
+            }
+        }
+
+        @charset "UTF-8";
+
+        /*!
+         * animate.css -http://daneden.me/animate
+         * Version - 3.5.1
+         * Licensed under the MIT license - http://opensource.org/licenses/MIT
+         *
+         * Copyright (c) 2016 Daniel Eden
+         */
+
+
+
+        @-webkit-keyframes flipOutYtest {
+            from {
+                -webkit-transform: perspective(1400px);
+                transform: perspective(1400px);
+            }
+
+            40% {
+                -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, 60deg);
+                transform: perspective(1400px) rotate3d(0, 1, 0, 60deg);
+                opacity: 1;
+            }
+
+            50% {
+                -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, 90deg);
+                transform: perspective(1400px) rotate3d(0, 1, 0, 90deg);
+                opacity: 0;
+            }
+
+            to {
+                -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, 180deg);
+                transform: perspective(1400px) rotate3d(0, 1, 0, 180deg);
+                opacity: 0;
+            }
+        }
+
+        .test{
+            -webkit-animation: flipOutYtest 0.75s linear;
+            animation: flipOutYtest 0.75s linear;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+
+        @-webkit-keyframes flipInYtest {
+            from {
+                -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, -180deg);
+                transform: perspective(1400px) rotate3d(0, 1, 0, -180deg);
+                opacity: 0;
+            }
+
+            50% {
+                -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, -90deg);
+                transform: perspective(1400px) rotate3d(0, 1, 0, -90deg);
+                opacity: 0;
+            }
+
+            60% {
+                -webkit-transform: perspective(1400px) rotate3d(0, 1, 0, -60deg);
+                transform: perspective(1400px) rotate3d(0, 1, 0, -60deg);
+                opacity: 1;
+            }
+
+            to {
+                -webkit-transform: perspective(1400px);
+                transform: perspective(1400px);
+                opacity: 1;
+            }
+        }
+
+        .test2{
+            -webkit-animation: flipInYtest 0.75s linear;
+            animation: flipInYtest 0.75s linear;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+
+
+        .well{ width: 1200px;margin-left: auto; margin-right: auto; height: 340px;display: flex;justify-content: space-between;align-items: center;flex-wrap: wrap;margin-bottom: 20px;cursor: pointer; }
+
+        .well .well-item{ position: relative;  width: 19%;
+        height: 310px;
+            border: 5px solid #df9d86;
+            box-sizing: border-box;
+        }
+        .well .well-item img{
+            width: 100%;
+        }
+        .correct{
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            background: #fff;
+        }
+        .opposite{
+            width: 100%;
+        }
+        .opposite div{
+            width: 100%;
+            height: 300px;
+        }
+        .opposite-content{
+            display: table;
+            width: 100%;
+            height: 100%;
+            background-color: #f8eae5;
+        }
+        .opposite-content-text{ display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 24px; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="container">
+        <p class="part-title part-img"><img src="https://assets.costway.com/media/wysiwyg/20210206/valentine1-1.png" alt=""></p>
+        <div class="pcShow">
+            <div class="kind-container part">
+                <a href="/gift-finder-her">
+                    <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine2.png">
+                    <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine2-11.png">
+                </a>
+                <a href="/gift-finder-him">
+                    <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine3.png">
+                    <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine3-11.png">
+                </a>
+                <a href="/gift-finder-kids">
+                    <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine4.png">
+                    <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine4-1.png">
+                </a>
+                <a href="/gift-finder-pets">
+                    <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine5.png">
+                    <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine5-1.png">
+                </a>
+                <a href="/gift-finder-friends">
+                    <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine6.png">
+                    <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine6-1.png">
+                </a>
+            </div>
+        </div>
+
+        <div class="part mobileShow">
+
+            <div class="swiper-container swiper-container2">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="/gift-finder-her">
+                            <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine2.png">
+                            <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine2-11.png">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/gift-finder-him">
+                            <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine3.png">
+                            <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine3-11.png">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/gift-finder-kids">
+                            <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine4.png">
+                            <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine4-1.png">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/gift-finder-pets">
+                            <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine5.png">
+                            <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine5-1.png">
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="/gift-finder-friends">
+                            <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine6.png">
+                            <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine6-1.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-button-prev swiper-button-black"></div>
+                <div class="swiper-button-next swiper-button-black"></div>
+            </div>
+        </div>
+        <div class="part">
+            <p class="part-title">MEET SPECIAL ROMANTIC OCCASION GUIDE</p>
+            <div class="special-part">
+                <a href="https://www.costway.com/costwayplus">
+                    <img src="https://assets.costway.com/media/wysiwyg/20210206/valentine7.png">
+                </a>
+                <a href="javascript:;" class="to-klarna">
+                    <img src="https://assets.costway.com/media/wysiwyg/20210206/valentine8.png">
+                </a>
+                <a href="https://www.costway.com/customer-say" class="mobile-top">
+                    <img src="https://assets.costway.com/media/wysiwyg/20210206/valentine9.png">
+                </a>
+                <a href="https://www.costway.com/costway-store" class="mobile-top">
+                    <img src="https://assets.costway.com/media/wysiwyg/20210206/valentine10.png">
+                </a>
+            </div>
+        </div>
+        <div class="part part2">
+            <ul>
+                <li>
+                    <a href="/furniture.html">
+                        <p>UP TO</p>
+                        <p>30%</p>
+                        <p>OFF</p>
+                        <p>Loving Home Refresh</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/appliance/wine-beverage-coolers.html">
+                        <p>FROM</p>
+                        <p>$49</p>
+                        <p>OFF</p>
+                        <p>Try a Wine-and-Dine Movie</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/health-beauty/massage-relaxation.html">
+                        <p>UP TO</p>
+                        <p>50%</p>
+                        <p>OFF</p>
+                        <p>Take a relaxing staycation</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/toys-hobbies/outdoor-play.html">
+                        <p>FROM</p>
+                        <p>$37</p>
+                        <p></p>
+                        <p>Make It a Game Night</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/kitchen/cookware-bakeware.html">
+                        <p>UP TO</p>
+                        <p>40%</p>
+                        <p>OFF</p>
+                        <p>Have a Themed Dinner</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/decor/holiday-decor.html">
+                        <p>UP TO</p>
+                        <p>70%</p>
+                        <p>OFF</p>
+                        <p>Last forever Decor</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/bath.html">
+                        <p>UP TO</p>
+                        <p>30%</p>
+                        <p>OFF</p>
+                        <p>Take a romantic bath</p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/outdoor.html">
+                        <p>SAVE UP T0</p>
+                        <p>$150</p>
+                        <p></p>
+                        <p>Spend a Night Away</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="part part3">
+            <ul class="type-content">
+                <li class="checked" current-type="#type1">
+                    <img src="https://assets.costway.com/media/wysiwyg/20210206/valentine12.png" alt="">
+                </li>
+                <li current-type="#type2"><img src="https://assets.costway.com/media/wysiwyg/20210206/valentine13.png" alt=""></li>
+                <li current-type="#type3"><img src="https://assets.costway.com/media/wysiwyg/20210206/valentine14.png" alt=""></li>
+                <li current-type="#type4"><img src="https://assets.costway.com/media/wysiwyg/20210206/valentine15.png" alt=""></li>
+            </ul>
+
+            <div class="content">
+                <ul class="checked" id="type1">
+                    <div class="pro-fir">
+                        <li class="pro_sku" current-sku="SP35198">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="SP35392">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="HW65863HW65865">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="TL32734color">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="HW57754">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="EP22083">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="SP37081">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="HU10319">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+                <ul id="type2">
+                    <div class="pro-fir">
+                        <li class="pro_sku" current-sku="SP37200color">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="HW47195">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="ES10121US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="TY327797">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="TQ10019US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="JZ10120">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="EP24767">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="HY10094US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+                <ul id="type3">
+                    <div class="pro-fir">
+                        <li class="pro_sku" current-sku="SP37177">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="SP37363">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="EP22276US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="JV10519">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="SP37375SP37378">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="TQ10059US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="HW60170">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="ES10068US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+                <ul id="type4">
+                    <div class="pro-fir">
+                        <li class="pro_sku" current-sku="OP70086">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="FP10226US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="HW60456">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="MU70017">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="TY327440+">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="TY328019">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="JS10015US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="pro_sku" current-sku="JV10210US">
+                            <a href="" class="pro_link">
+                                <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                                <p class="shop-name productText"></p>
+                                <p class="shop-price productPrice">
+                                    <span class="now-price productOld"></span>
+                                    <span class="pre-price productNew"></span>
+                                </p>
+                                <div class="buy">
+                                    <p>SHOP NOW</p>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <div class="part part4">
+            <div class="content">
+                <ul>
+                    <div class="big-img">
+                        <a href="/59-inch-l-shaped-desk-corner-computer-desk-with-round-corner.html">
+                            <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine16.png">
+                            <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine17.png">
+                        </a>
+                    </div>
+                    <li class="pro_sku" current-sku="HW65902">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="JV10357">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="HW66326">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="HW60186">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="HW65396">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="JV10523">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <div class="big-img mobileShow">
+                        <a href="/2-pcs-outdoor-patio-lounge-chair-chaise-fabric-with-adjustable-reclining-armrest-brown.html">
+                        <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine18.png">
+                        <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine19.png">
+                        </a>
+                    </div>
+                    <li class="pro_sku" current-sku="TQ10076">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="TY327674">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="TY327745+">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="NP10525-1">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="HW67016">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="TS10024">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <div class="big-img pcShow">
+                        <a href="/2-pcs-outdoor-patio-lounge-chair-chaise-fabric-with-adjustable-reclining-armrest-brown.html">
+                        <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine18.png">
+                        <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine19.png">
+                        </a>
+                    </div>
+
+                    <div class="big-img">
+                        <a href="/jumbo-4-to-score-giant-game-set-with-42-jumbo-rings-quick-release-slider-blue.html">
+                        <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine20.png">
+                        <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine21.png">
+                        </a>
+                    </div>
+                    <li class="pro_sku" current-sku="OP3684">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="HW66714+">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="HW67190+">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="GT2980">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="GT3959">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="GT3553">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+
+                    <div class="big-img mobileShow">
+                        <a href="/2-25hp-2-in-1-folding-treadmill-with-bluetooth-speaker-remote-control.html">
+                        <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine22.png">
+                        <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine23.png">
+                        </a>
+                    </div>
+                    <li class="pro_sku" current-sku="TY564096">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="SP37672">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="SP37730">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="SP37675">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="SP37460">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="SP37359">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <div class="big-img pcShow">
+                        <a href="/2-25hp-2-in-1-folding-treadmill-with-bluetooth-speaker-remote-control.html">
+                        <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine22.png">
+                        <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine23.png">
+                        </a>
+                    </div>
+
+                    <div class="big-img">
+                        <a href="/28-5-inch-electric-recessed-mounted-standing-fireplace-heater.html">
+                        <img class="img-normal" src="https://assets.costway.com/media/wysiwyg/20210206/valentine24.png">
+                        <img class="img-hover" src="https://assets.costway.com/media/wysiwyg/20210206/valentine25.png">
+                        </a>
+                    </div>
+                    <li class="pro_sku" current-sku="FP10257">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="FP10218US-WH">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="EP24896">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="ES10200US">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="ES10147US">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="pro_sku" current-sku="ES10049">
+                        <a href="" class="pro_link">
+                            <img class="lazy lazyload pro_img" data-original="" src="https://assets.costway.com/skin/frontend/default/hooya/images/pixel.gif" alt="">
+                            <p class="shop-name productText"></p>
+                            <p class="shop-price productPrice">
+                                <span class="now-price productOld"></span>
+                                <span class="pre-price productNew"></span>
+                            </p>
+                            <div class="buy">
+                                <p>SHOP NOW</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function ($) {
+
+
+        var sku_list = document.getElementsByClassName('pro_sku');
+        var sku_arr = [];
+        for (var i = 0; i < sku_list.length; i++) {
+            sku_arr.push($.trim(sku_list[i].getAttribute('current-sku')));
+        }
+        $('.see-more').click(function (){
+            $(this).hide()
+            $(this).parent('ul').find('.pro-sec').show()
+        })
+
+        $('.kind-container a,.part .content .big-img').hover(function (){
+            $(this).find('.img-normal').hide()
+            $(this).find('.img-hover').show()
+        },function (){
+            $(this).find('.img-normal').show()
+            $(this).find('.img-hover').hide()
+        })
+
+        new Swiper('.swiper-container2', {
+            speed: 400,
+            loop:true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            slidesPerView : 'auto',
+            slidesPerGroup : 2,
+            observer:true,
+            observeParents:true,
+        });
+        new Swiper('.swiper-container3', {
+            speed: 400,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on:{
+                slideChange: function(){
+                    console.log(this.activeIndex);
+                    $('.part .part-pro').hide()
+                    if(this.activeIndex==0){
+                        $('.part .part-pro1').css('display','flex')
+                    }else if(this.activeIndex==1){
+                        $('.part .part-pro2').css('display','flex')
+                    }
+                    else if(this.activeIndex==2){
+                        $('.part .part-pro3').css('display','flex')
+                    }
+                },
+            },
+        });
+        // app兼容
+        var u = navigator.userAgent, app = navigator.appVersion;
+        var isiOS = u.indexOf('Safari') == -1;  //ios终端
+        var isMb  = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|wOSBrowser|BrowserNG|WebOS)/i);//手机端
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isAPP = u.indexOf('costway-app') > -1;
+        if(isMb){
+            $('.to-klarna').click(function (){
+                layer.open({
+                    type: 1,
+                    title:false,
+                    area: '90%',
+                    offset: '100px',
+                    content: '<img src="https://assets.costway.com/media/wysiwyg/20210206/valentine26.jpg" style="width: 100%;">'
+                });
+            })
+        }else{
+            $('.to-klarna').click(function (){
+                layer.open({
+                    type: 1,
+                    title:false,
+                    area: '500px',
+                    offset: '140px',
+                    content: '<img src="https://assets.costway.com/media/wysiwyg/20210206/valentine26.jpg" style="width: 100%;">'
+                });
+            })
+        }
+        function getSysType() {
+            var us = navigator.userAgent.toLowerCase();
+            if ((us.indexOf('android') > -1 || us.indexOf('linux') > -1) || navigator.platform.toLowerCase().indexOf('linux') != -1) {
+                return 'android';
+            } else if (us.indexOf('iphone') > -1 || us.indexOf('ipad') > -1) {
+                return 'ios';
+            } else if (us.indexOf('costway-app') > -1) {
+                return 'app';
+            }
+        }
+        if(isAPP){
+            $('.van-sticky').hide();
+            $('.foot-part').hide();
+            if(getSysType()=='android'){
+                try {
+                    window.android.fitStatusBar();
+                }catch{}
+                }else if (getSysType() == "ios") {
+                try {
+                    window.webkit.messageHandlers.fitStatusBar.postMessage("");
+                }catch{}
+            }
+        }
+
+        // 类目适配
+        $('.kind-container a').each(function(){
+            var pid = $(this).attr('data-pid')
+            if(pid){
+                if(isAPP){
+                    let _u = $(this).attr('href')+'?url='+encodeURIComponent('FilterList?entityId='+pid)+'&keyword=&dumpType=1'
+                    $(this).attr('href',_u)
+                }
+            }
+        })
+
+        // plus会员适配
+        $('.join').click(function(){
+            if(isAPP){
+                AppToWebview('https://app.costway.com/app-h5/v3/#/plus')
+            }else{
+                location.href='/costwayplus'
+            }
+        })
+        function AppToWebview(url) {      
+        //新开webview
+        if (getSysType() == "android") {
+            window.android.ToJSBridgeWebview(url);
+        } else if (getSysType() == "ios") {
+            window.webkit.messageHandlers.ToJSBridgeWebview.postMessage({
+            url: url,
+            });
+        }
+        }
+
+        $('.costwayStore').click(function(){
+            if(isAPP){
+                AppToWebview('https://app.costway.com/app-h5/v3/#/costwaystore')
+            }else{
+                location.href='/costway-store'
+            }
+        })
+
+        $('.part3 .type-content li').click(function(){
+            let thisType = $(this).attr('current-type');
+            $(thisType).addClass('checked').siblings().removeClass('checked');
+            $(this).addClass('checked').siblings().removeClass('checked');
+        })
+
+
+        //调用接口
+        $.ajax({
+            url: "https://new-api.costway.com/api/products/get_product_in_sku",
+            // url: "/api/products/get_product_in_sku",
+            data: {'sku':sku_arr.toString()},
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if(data.code == 200){
+                    full_price = data.result;
+                    for(var ii = 0; ii < sku_list.length; ii++){
+                        var pro_sku = $.trim(sku_list[ii].getAttribute('current-sku'));
+                        var prices = full_price[pro_sku];
+                        var final_price = sku_list[ii].getElementsByClassName('productOld')[0];
+                        var offNum = sku_list[ii].getElementsByClassName('off_num')[0];
+                        var original_price = sku_list[ii].getElementsByClassName('productNew')[0];
+                        var img_url = sku_list[ii].getElementsByClassName('pro_img')[0];
+                        var pro_title = sku_list[ii].getElementsByClassName('productText')[0];
+                        var pro_link = sku_list[ii].getElementsByClassName('pro_link')[0];
+                        var buy_link = sku_list[ii].getElementsByClassName('buy')[0];
+                        var plus_price = sku_list[ii].getElementsByClassName('productPlus')[0];
+
+                        var main_off = sku_list[ii].getElementsByClassName('off_num1')[0];
+                        var pro_link2 = sku_list[ii].getElementsByClassName('pro_link2')[0];
+                        var first_pirce = sku_list[ii].getElementsByClassName('first-price')[0];
+
+                        sku_list[ii].setAttribute('current-id', prices['id']);
+                        let thisPrice = prices['special_price'].replace(',','').substring(1);
+                        let firstPrice = (thisPrice - 90).toFixed(2);
+                        if (firstPrice < 0){
+                            firstPrice = '$0.00';
+                        }else{
+                            firstPrice = "$" + firstPrice;
+                        }
+
+                        if (first_pirce){
+                            first_pirce.innerHTML = `Membership First Order ${firstPrice}`; 
+                        }
+                        if (final_price) {
+                            final_price.innerText = prices['final_price'];
+                        }
+                        if (img_url) {
+                            img_url.src = prices['img'];
+                        }
+                        if (buy_link) {
+                            buy_link.href = prices['cart_url'];
+                        }
+                        if (original_price  && prices['price'] != prices['final_price']) {
+                            original_price.innerText = prices['price'];
+                        }
+                        if (pro_title) {
+                            pro_title.innerText = prices['name'];
+                        }
+                        if (pro_link) {
+                            if(isAPP){
+                                urlPath = prices['url']+'?url='+encodeURIComponent('detail?pid='+prices['id'])+'&dumpType=2'
+                            }else{
+                                urlPath = prices['url']
+                            }
+                            pro_link.href = urlPath;
+                        }
+                        if (pro_link2) {
+                            if(isAPP){
+                                urlPath = prices['url']+'?url='+encodeURIComponent('detail?pid='+prices['id'])+'&dumpType=2'
+                            }else{
+                                urlPath = prices['url']
+                            }
+                            pro_link2.href = urlPath;
+                        }
+                        if (offNum && prices['off'] != 0) {
+                            offNum.innerHTML = `<p>-${prices['off']}%</p>`;
+                        }
+                        if (main_off && prices['off'] != 0) {
+                            main_off.innerHTML = `<p>${prices['off']}%<br>OFF</p>`;
+                        }
+                        if (plus_price){
+                            plus_price.innerText = prices['plus_price'];
+                        }
+                    }
+                }
+        
+
+
+            },
+            error: function () {
+                console.log('err');
+            }
+        });
+    })
+</script>
+</body>
+</html>
